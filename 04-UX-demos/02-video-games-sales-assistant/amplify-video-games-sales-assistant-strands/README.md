@@ -2,6 +2,9 @@
 
 This tutorial guides you through setting up a React Web application that integrates with your [Strands Agent](https://strandsagents.com), creating a Data Analyst Assistant for Video Game Sales.
 
+> [!NOTE]
+> **Working Directory**: Make sure you are in the `amplify-video-games-sales-assistant-strands/` folder before starting this tutorial. All commands in this guide should be executed from this directory.
+
 ## Overview
 
 By the end of this tutorial, you'll have a fully functional Generative AI web application that allows users to interact with a Data Analyst Assistant interface.
@@ -23,10 +26,6 @@ The application consists of two main components:
 Before you begin, ensure you have:
 
 - [Node.js version 18+](https://nodejs.org/en/download/package-manager)
-- React Scripts installed:
-``` bash
-npm install react-scripts
-```
 
 ## Set Up the Front-End Application
 
@@ -173,14 +172,13 @@ export QUESTION_ANSWERS_TABLE_NAME=$(aws cloudformation describe-stacks --stack-
 export AGENT_ENDPOINT_URL=$(aws cloudformation describe-stacks --stack-name "$STACK_NAME" --query "Stacks[0].Outputs[?OutputKey=='AgentEndpointURL'].OutputValue" --output text)
 
 echo "Table Name: $QUESTION_ANSWERS_TABLE_NAME"
-echo "Agent Endpoint: http://$AGENT_ENDPOINT_URL/assistant-streaming"
+echo "Agent Endpoint URL: $AGENT_ENDPOINT_URL"
 ```
 
 ### Update Environment Variables
 
 In your **src/env.js** update the following environment variables:
 
- - **AWS_REGION**: Your AWS region (e.g., "us-east-1")
  - **QUESTION_ANSWERS_TABLE_NAME**: Use the value from the command above
  - **AGENT_ENDPOINT_URL**: Use the format "http://&lt;AgentEndpointURL&gt;/assistant-streaming" with the URL from the command above
 
